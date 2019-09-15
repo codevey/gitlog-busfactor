@@ -2,6 +2,8 @@
 
 Calculates the bus factor for each file in your repository from a git log
 
+[![CircleCI](https://circleci.com/gh/codevey/gitlog-busfactor.svg?style=svg)](https://circleci.com/gh/codevey/gitlog-busfactor)
+
 ## Usage
 
 Install gitlog-busfactor
