@@ -7,9 +7,9 @@ const parse = require('parse-git-numstat');
 const { table } = require('table');
 const { createObjectCsvStringifier } = require('csv-writer');
 
-const normalizeRenames = require('../lib/normalize-renames');
-const markDeleted = require('../lib/mark-deleted');
-const buildBusfactors = require('../lib/build-busfactors');
+const normalizeRenames = require('./lib/normalize-renames');
+const markDeleted = require('./lib/mark-deleted');
+const buildBusfactors = require('./lib/build-busfactors');
 
 program.option('-g, --gitlog <gitlog>', 'path to git log with numstat', 'gitlog.txt');
 program.option('-t, --threshold <threshold>', 'report busfactor below this threshold', 3);
