@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Calculates the bus factor from git log",
   "bin" : { "gitlog-busfactor" : "./cli.js" },
+  "main": "lib/build-busfactors.js",
   "scripts": {
     "start": "nodemon cli.js",
     "test": "mocha test --recursive",
