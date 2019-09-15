@@ -1,0 +1,49 @@
+{
+  "name": "gitlog-busfactor",
+  "version": "1.0.0",
+  "description": "Calculates the bus factor from git log",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon bin/gitlog-busfactor.js",
+    "test": "mocha test --recursive",
+    "test:ci": "mocha test --recursive --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml",
+    "coverage": "nyc npm run test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codevey/gitlog-busfactor.git"
+  },
+  "keywords": [
+    "git",
+    "busfactor",
+    "metrics"
+  ],
+  "author": "Christoph Walcher <christoph.walcher@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codevey/gitlog-busfactor/issues"
+  },
+  "homepage": "https://github.com/codevey/gitlog-busfactor#readme",
+  "dependencies": {
+    "commander": "^3.0.1",
+    "csv-writer": "^1.5.0",
+    "fs-extra": "^8.1.0",
+    "parse-git-numstat": "^1.0.2",
+    "table": "^5.4.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "^6.2.0",
+    "mocha-junit-reporter": "^1.23.1",
+    "nodemon": "^1.19.2",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "standard-version": "^7.0.0"
+  }
+}
