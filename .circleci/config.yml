@@ -19,16 +19,20 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: eslint
+          command: npm run lint -- --format junit --output-file ./reports/eslint/test-results.xml
+      - run:
           name: test
           command: npm run test:ci
       - run:
           name: coverage
           command: 'npm run coverage -- --reporter=text-lcov'
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: ./reports/eslint/test-results.xml
       - store_artifacts:
           path: ./reports/mocha/test-results.xml
-          prefix: tests
       - store_artifacts:
           path: coverage
           prefix: coverage
-      - store_test_results:
-          path: reports
