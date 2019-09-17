@@ -2,7 +2,9 @@
   "name": "gitlog-busfactor",
   "version": "1.0.0",
   "description": "Calculates the bus factor from git log",
-  "bin" : { "gitlog-busfactor" : "./cli.js" },
+  "bin": {
+    "gitlog-busfactor": "./cli.js"
+  },
   "main": "lib/build-busfactors.js",
   "scripts": {
     "start": "nodemon cli.js",
@@ -32,6 +34,7 @@
     "commander": "^3.0.1",
     "csv-writer": "^1.5.0",
     "fs-extra": "^8.1.0",
+    "multimatch": "^4.0.0",
     "parse-git-numstat": "^1.0.2",
     "table": "^5.4.6"
   },

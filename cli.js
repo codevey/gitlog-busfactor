@@ -3,6 +3,7 @@
 const program = require('commander');
 const fs = require('fs-extra');
 const parse = require('parse-git-numstat');
+const multimatch = require('multimatch');
 
 const { table } = require('table');
 const { createObjectCsvStringifier } = require('csv-writer');
@@ -13,6 +14,8 @@ const buildBusfactors = require('./lib/build-busfactors');
 
 program.option('-g, --gitlog <gitlog>', 'path to git log with numstat', 'gitlog.txt');
 program.option('-t, --threshold <threshold>', 'report busfactor below this threshold', 3);
+program.option('-e, --exclude <glob>', 'glob pattern to exclude files', repeatable, []);
+program.option('-i, --include <glob>', 'glob pattern to include files', repeatable, []);
 program.option('-r, --report <table/csv>', 'report bus factors in csv or console table format', 'table');
 
 program.parse(process.argv);
@@ -32,7 +35,16 @@ async function buildReport(args) {
 
   const commits = markDeleted(normalizeRenames(gitlog.filter(commit => !commit.merge)));
 
-  const busfactors = buildBusfactors(commits).filter(file => file.busfactor < args.threshold);
+  const matchPattern = buildMatchPattern(args.include, args.exclude);
+
+  const busfactors = buildBusfactors(commits)
+    .filter(file => file.busfactor < args.threshold)
+    .filter(file => multimatch([file.filepath], matchPattern).length == 1);
+
+  if (busfactors.length == 0) {
+    console.log(`No files with bus factor less than threshold ${args.threshold} found`);
+    return;
+  }
 
   if (args.report == 'csv') {
     const records = busfactors.map(file => ({
@@ -66,6 +78,14 @@ async function buildReport(args) {
 
     console.log(`Found ${tableData.length} files with a bus factor of ${args.threshold - 1} or below`);
   }
+}
+
+function buildMatchPattern(includes, excludes) {
+  return [].concat(includes.length > 0 ? includes : '**/*.*', excludes.map(e => `!${e}`));
+}
+
+function repeatable(value, previous) {
+  return [...previous, value];
 }
 
 buildReport(program);
