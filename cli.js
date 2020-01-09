@@ -54,7 +54,11 @@ async function buildReport(args) {
     }));
 
     const writer = createObjectCsvStringifier({
-      header: [{ id: 'filepath', title: 'Filepath' }, { id: 'authors', title: 'Authors' }, { id: 'busfactor', title: 'Bus Factor' }],
+      header: [
+        { id: 'filepath', title: 'Filepath' },
+        { id: 'authors', title: 'Authors' },
+        { id: 'busfactor', title: 'Bus Factor' },
+      ],
     });
     console.log(writer.stringifyRecords(records));
   } else {
@@ -81,7 +85,10 @@ async function buildReport(args) {
 }
 
 function buildMatchPattern(includes, excludes) {
-  return [].concat(includes.length > 0 ? includes : '**/*.*', excludes.map(e => `!${e}`));
+  return [].concat(
+    includes.length > 0 ? includes : '**/*.*',
+    excludes.map(e => `!${e}`),
+  );
 }
 
 function repeatable(value, previous) {
