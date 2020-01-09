@@ -24,7 +24,10 @@ describe('build-busfactory', () => {
     const commits = [
       {
         author: { email: 'a@nomail.please' },
-        stat: [{ filepath: 'a.js', added: 2, deleted: 0 }, { filepath: 'b.js', added: 2, deleted: 0 }],
+        stat: [
+          { filepath: 'a.js', added: 2, deleted: 0 },
+          { filepath: 'b.js', added: 2, deleted: 0 },
+        ],
       },
       {
         author: { email: 'a@nomail.please' },
