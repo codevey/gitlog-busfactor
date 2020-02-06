@@ -1,6 +1,6 @@
 {
   "name": "gitlog-busfactor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Calculates the bus factor from git log",
   "bin": {
     "gitlog-busfactor": "./cli.js"
