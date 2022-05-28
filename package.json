@@ -33,7 +33,7 @@
   "dependencies": {
     "commander": "^4.1.1",
     "csv-writer": "^1.6.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "multimatch": "^4.0.0",
     "parse-git-numstat": "^1.1.2",
     "table": "^5.4.6"
